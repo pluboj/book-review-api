@@ -1,21 +1,18 @@
 package com.pluboj.book;
 
+import com.fasterxml.jackson.databind.ser.Serializers;
+import com.pluboj.core.BaseEntity;
+
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 @Entity
-public class Book {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private final Long id;
+public class Book extends BaseEntity{
     private String title;
     private String author;
     private String published;
 
     protected Book() {
-        id = null;
+        super();
     }
 
     public Book(String title, String author, String published) {
