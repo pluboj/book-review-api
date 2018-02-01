@@ -1,9 +1,13 @@
 package com.pluboj.book;
 
-import com.fasterxml.jackson.databind.ser.Serializers;
 import com.pluboj.core.BaseEntity;
+import com.pluboj.review.Review;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Book extends BaseEntity{
@@ -11,8 +15,12 @@ public class Book extends BaseEntity{
     private String author;
     private String published;
 
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    private List<Review> reviews;
+
     protected Book() {
         super();
+        reviews = new ArrayList<>();
     }
 
     public Book(String title, String author, String published) {
@@ -20,6 +28,15 @@ public class Book extends BaseEntity{
         this.title = title;
         this.author = author;
         this.published = published;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void addReview(Review review) {
+        review.setBook(this);
+        reviews.add(review);
     }
 
     public String getTitle() {
