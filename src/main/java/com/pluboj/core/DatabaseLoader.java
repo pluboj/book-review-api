@@ -39,7 +39,8 @@ public class DatabaseLoader implements ApplicationRunner {
              "Italian",
              "German",
              "French",
-             "Bongo-Bongo"
+             "Bongo-Bongo",
+             "Martian"
         };
 
         List<Book> stackOfBooks = new ArrayList<>();
