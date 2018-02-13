@@ -2,6 +2,7 @@ package com.pluboj.review;
 
 import com.pluboj.book.Book;
 import com.pluboj.core.BaseEntity;
+import com.pluboj.user.User;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -13,6 +14,8 @@ public class Review extends BaseEntity{
 
     @ManyToOne
     private Book book;
+    @ManyToOne
+    private User reviewer;
 
     protected Review() {
         super();
@@ -21,6 +24,14 @@ public class Review extends BaseEntity{
     public Review(int rating, String description) {
         this.rating = rating;
         this.description = description;
+    }
+
+    public User getReviewer() {
+        return reviewer;
+    }
+
+    public void setReviewer(User reviewer) {
+        this.reviewer = reviewer;
     }
 
     public Book getBook() {
